@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="12dp"
+    android:paddingHorizontal="@dimen/layout_padding">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+
+        <ImageView
+            android:id="@+id/row_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/profile_pict"
+            android:contentDescription="@string/account_profile_picture"
+            android:layout_alignParentStart="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/row_options"
+            android:layout_toEndOf="@id/row_image">
+
+        <TextView
+            android:id="@+id/row_username"
+            style="?attr/textAppearanceSubtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/account_name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/row_userEmail"
+            style="?attr/textAppearanceSubtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/email"
+            android:textSize="16sp"
+            android:layout_marginHorizontal="12dp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/row_options"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/post_option"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_option" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/row_content"
+        style="?attr/textAppearanceSubtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/post_content"
+        android:layout_marginBottom="4dp"
+        android:lineSpacingExtra="4dp"/>
+
+    <TextView
+        android:id="@+id/row_time"
+        style="?attr/textAppearanceSubtitle2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@string/timestamp"
+        android:layout_marginBottom="4dp"
+        android:lineSpacingExtra="4dp"
+        android:maxLines="1"
+        android:gravity="end"/>
+</LinearLayout>

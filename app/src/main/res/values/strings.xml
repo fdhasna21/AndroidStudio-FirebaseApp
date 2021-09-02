@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">PostIt Firebase</string>
+    <string name="profile">Profile</string>
+    <string name="signup">Sign Up</string>
+    <string name="signin">Sign In</string>
+    <string name="signout">Sign Out</string>
+    <string name="created_by_fernanda_daymara_hasna">Created by Fernanda Daymara Hasna</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="password_confirmation">Password Confirmation</string>
+    <string name="photo_profile">Photo Profile</string>
+    <string name="name">Name</string>
+    <string name="bio">Bio</string>
+    <string name="create">Create</string>
+    <string name="menu">Menu</string>
+    <string name="submit">Submit</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="add_new_post">Add New Post</string>
+    <string name="add_post_hint">Share what you\'re up to..</string>
+    <string name="post">Post</string>
+    <string name="close_bottomsheetpost">Close BottomSheetPost</string>
+    <string name="account_profile_picture">account_profile_picture</string>
+    <string name="account_name">Account Name</string>
+    <string name="post_option">Post Option</string>
+    <string name="post_content">Post Content</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="attach_file">Attach File</string>
+    <string name="post_counter">Post Counter</string>
+    <string name="post_counter_text">1%d/280</string>
+</resources>

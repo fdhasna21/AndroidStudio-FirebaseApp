@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetPostLayout"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="20dp"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/bottomSheetPostClose"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/close_bottomsheetpost"
+            android:onClick="closeNewPost"
+            android:src="@drawable/ic_close"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"/>
+
+        <EditText
+            android:id="@+id/bottomSheetPostContent"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="@string/add_post_hint"
+            android:background="@color/white"
+            android:gravity="top"
+            android:lineSpacingExtra="1.5dp"
+            android:layout_marginVertical="20dp"
+            android:maxLength="280"
+            style="?attr/textAppearanceSubtitle1"
+            android:textSize="16sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+<!--            <TextView-->
+<!--                android:id="@+id/bottomSheetPostCounter"-->
+<!--                style="?attr/textAppearanceSubtitle2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/white"-->
+<!--                android:gravity="top"-->
+<!--                android:lineSpacingExtra="1.5dp"-->
+<!--                android:text="@string/post_counter"-->
+<!--                android:textColor="#62000000"-->
+<!--                android:textSize="12sp" />-->
+
+            <ImageButton
+                android:id="@+id/bottomSheetAttach"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_toStartOf="@id/bottomSheetPostSubmit"
+                android:adjustViewBounds="true"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/attach_file"
+                android:onClick="attachFile"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_attach"
+                android:layout_marginHorizontal="12dp"/>
+
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/bottomSheetPostSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/circular_border_shape"
+                android:text="@string/post"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:theme="@style/Widget.MaterialComponents.Button"
+                app:spinning_bar_color="@color/white"
+                app:spinning_bar_padding="12dp"
+                android:textSize="14sp"
+                android:onClick="openNewPost"/>
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
