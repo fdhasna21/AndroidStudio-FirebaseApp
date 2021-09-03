@@ -6,13 +6,14 @@
     android:paddingVertical="12dp"
     android:paddingHorizontal="@dimen/layout_padding">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp">
 
         <ImageView
-            android:id="@+id/row_image"
+            android:id="@+id/row_imageUser"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitCenter"
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_toStartOf="@id/row_options"
-            android:layout_toEndOf="@id/row_image">
+            android:layout_toEndOf="@id/row_imageUser">
 
         <TextView
             android:id="@+id/row_username"
@@ -59,6 +60,14 @@
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_option" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/row_imagePost"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginBottom="4dp"
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/row_content"

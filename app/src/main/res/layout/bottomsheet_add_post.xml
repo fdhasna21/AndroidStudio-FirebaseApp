@@ -40,7 +40,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginBottom="20dp">
 
 <!--            <TextView-->
 <!--                android:id="@+id/bottomSheetPostCounter"-->
@@ -77,13 +78,49 @@
                 android:layout_gravity="center"
                 android:layout_marginVertical="4dp"
                 android:background="@drawable/circular_border_shape"
+                android:onClick="openNewPost"
                 android:text="@string/post"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textSize="14sp"
                 android:theme="@style/Widget.MaterialComponents.Button"
                 app:spinning_bar_color="@color/white"
-                app:spinning_bar_padding="12dp"
-                android:textSize="14sp"
-                android:onClick="openNewPost"/>
+                app:spinning_bar_padding="12dp" />
         </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:minHeight="0dp">
+
+            <ImageButton
+                android:id="@+id/bottomSheetPostAttachCancel"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="20dp"
+                android:layout_gravity="top|end"
+                android:src="@drawable/ic_close"
+                android:background="@drawable/ic_circle"
+                android:visibility="gone"
+                android:onClick="deleteAttachFile"
+                android:contentDescription="@string/attach_file"/>
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/bottomSheetPostPlayerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:resize_mode="fixed_height"
+                app:show_timeout="0"
+                app:use_controller="true"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/bottomSheetPostImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxHeight="200dp"
+                android:visibility="gone"
+                android:layout_gravity="center"/>
+        </FrameLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

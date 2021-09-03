@@ -42,17 +42,16 @@ class CreateProfileActivity : AppCompatActivity() {
 
     private var uid : String? = currentUser?.uid
     private var profile = Profile()
-    private var imageUri : Uri?=null
+    private var imageUri : Uri? = null
     private var email :String = currentUser!!.email.toString()
 
-    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { data ->
         try{
-            if(it?.resultCode == Activity.RESULT_OK){
-                it.data?.let {
+            if(data?.resultCode == Activity.RESULT_OK){
+                data.data?.let {
                     imageUri = it.data
                     Glide.with(this)
-                        .load(imageUri)
-                        .circleCrop()
+                        .load(imageUri!!)
                         .into(binding.createImage)
                 }
             }
@@ -65,6 +64,8 @@ class CreateProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.title = "Create Account"
 
         Glide.with(this)
             .load(R.drawable.profile_pict)
@@ -98,48 +99,55 @@ class CreateProfileActivity : AppCompatActivity() {
         isEditable = false
 
         if(name.isNotEmpty()){
-            imageUri?.let {
-                val fileExtension = MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(it))
-                val reference : StorageReference = storage.getReference("profile_images").child(System.currentTimeMillis().toString() + ".${fileExtension}")
-                val uploadTask = reference.putFile(it)
-                uploadTask.continueWith {
+            profile.name = name
+            profile.uid = uid!!
+            profile.bio = bio
+            if(imageUri == null){
+                profile.url = ""
+                sendData()
+            } else{
+                val mimeTypeMap = MimeTypeMap.getSingleton()
+                val fileExtension = mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(imageUri!!))
+                val storageReference : StorageReference = storage.getReference("profile_images").child(System.currentTimeMillis().toString() + ".${fileExtension}")
+                val uploadTask = storageReference.putFile(imageUri!!)
+                uploadTask.continueWithTask {
                     if(!it.isSuccessful){
                         throw it.exception!!.cause!!
                     }
-                    reference.downloadUrl
+                    storageReference.downloadUrl
                 }.addOnCompleteListener {
-                    if(it.isSuccessful){
-                        it.result?.let{
-                            profile.name = name
-                            profile.photoUrl = it.toString()
-                            profile.uid = uid!!
-
-                            val profileMap = HashMap<String,String>()
-                            profileMap["name"] = name
-                            profileMap["bio"] = bio
-                            profileMap["email"] = email
-                            profileMap["photo_url"] = profile.photoUrl!!
-                            profileMap["uid"] = profile.uid!!
-
-                            uid?.let {
-                                database.getReference("users").child(it).setValue(profile)
-                                firestore.collection("users").document(it).set(profileMap).addOnCompleteListener {
-                                    Toast.makeText(this, "Profile created", Toast.LENGTH_SHORT).show()
-                                    Handler(Looper.getMainLooper()).postDelayed({
-                                        startActivity(Intent(this, MainActivity::class.java))
-                                        finish()
-                                    }, 1000)
-                                }
-                            }
+                    if (it.isSuccessful) {
+                        it.result?.let {
+                            profile.url = it.toString()
+                            sendData()
                         }
                     }
                 }
             }
-        }else{
+        } else {
             binding.createNameLayout.error = "Name cannot be null or empty"
             isEditable = true
         }
 
+    }
+
+    private fun sendData(){
+        val profileMap = HashMap<String,String>()
+        profileMap["name"] = profile.name!!
+        profileMap["bio"] = profile.bio!!
+        profileMap["email"] = email
+        profileMap["url"] = profile.url!!
+        profileMap["uid"] = profile.uid!!
+
+        uid?.let {
+            database.getReference("users").child(it).setValue(profile)
+            firestore.collection("users").document(it).set(profileMap).addOnCompleteListener {
+                Toast.makeText(this, "Profile created", Toast.LENGTH_SHORT).show()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish() }, 1000)
+            }
+        }
     }
 
     private var isEditable : Boolean = false

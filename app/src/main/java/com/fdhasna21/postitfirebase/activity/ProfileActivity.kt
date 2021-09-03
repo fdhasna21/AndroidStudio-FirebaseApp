@@ -7,6 +7,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -15,12 +17,11 @@ import android.view.inputmethod.InputMethodManager
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.fdhasna21.postitfirebase.R
 import com.fdhasna21.postitfirebase.databinding.ActivityProfileBinding
 import com.fdhasna21.postitfirebase.dataclass.Profile
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -44,7 +45,7 @@ class ProfileActivity : AppCompatActivity() {
     private var currentUser : FirebaseUser? = auth.currentUser
 
     private var uid : String? = currentUser?.uid
-    private var imageUri : Uri?=null
+    private var imageUri : Uri? = null
     private lateinit var profile : Profile
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -75,18 +76,11 @@ class ProfileActivity : AppCompatActivity() {
         binding.profileName.setText(profile.name)
         binding.profileBio.setText(profile.bio)
         binding.profileEmail.setText(profile.email)
-
-        val reference = storage.getReference("users").child(currentUser!!.uid)
-        reference.downloadUrl.addOnCompleteListener {
-            OnCompleteListener<Uri> {
-                if(it.isSuccessful){
-                    imageUri = it.result
-                    Glide.with(this).load(imageUri).into(binding.profileImage)
-                } else{
-                    Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        imageUri = profile.url!!.toUri()
+        Glide.with(this)
+            .load(imageUri)
+            .centerCrop()
+            .into(binding.profileImage)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -102,7 +96,8 @@ class ProfileActivity : AppCompatActivity() {
             alertDialog.create()
             alertDialog.show()
         }else{
-            onBackPressed()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
         return true
     }
@@ -136,14 +131,13 @@ class ProfileActivity : AppCompatActivity() {
         val bio = binding.profileBio.text.toString()
         val email = binding.profileEmail.text.toString()
 
-        isEditable = false
         binding.editSubmit.startAnimation()
 
         imageUri?.let {
             val fileExtension = MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(it))
-            val reference = storage.getReference("profile_images").child(System.currentTimeMillis().toString() + ".${fileExtension}")
+            val reference = storage.getReference("photo_url").child(System.currentTimeMillis().toString() + ".${fileExtension}")
             val uploadTask = reference.putFile(it)
-            uploadTask.continueWith {
+            uploadTask.continueWithTask {
                 if(!it.isSuccessful){
                     throw it.exception!!.cause!!
                 }
@@ -152,22 +146,24 @@ class ProfileActivity : AppCompatActivity() {
                 if(it.isSuccessful){
                     it.result?.let{
                         profile.name = name
-                        profile.photoUrl = it.toString()
+                        profile.url = it.toString()
+                        profile.bio = bio
                         profile.uid = uid!!
 
                         val profileMap = HashMap<String,String>()
                         profileMap["name"] = name
                         profileMap["bio"] = bio
                         profileMap["email"] = email
-                        profileMap["photo_url"] = profile.photoUrl!!
-                        profileMap["uid"] = profile.uid!!
+                        profileMap["url"] = profile.url!!
+                        profileMap["uid"] = uid!!
 
                         uid?.let {
                             database.getReference("users").child(it).setValue(profile)
                             firestore.collection("users").document(it).set(profileMap).addOnCompleteListener {
-                                binding.editSubmit.revertAnimation()
-                                Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
-                                isEditable = false
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+                                    binding.editSubmit.revertAnimation()
+                                    isEditable = false }, 2000)
                             }
                         }
                     }

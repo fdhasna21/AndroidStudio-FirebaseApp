@@ -9,14 +9,16 @@
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/drawable/divider_view_padding.xml" value="0.1537037037037037" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/drawable/ic_add.xml" value="0.13796296296296295" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/drawable/selector_password.xml" value="0.22135416666666666" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_cobacoba.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_create_profile.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_multipolar.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_profile.xml" value="0.11141304347826086" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_sign_in.xml" value="0.15" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_sign_up.xml" value="0.11141304347826086" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/bottomsheet_activity_main.xml" value="0.1" />
-        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/bottomsheet_add_post.xml" value="0.33" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/bottomsheet_add_post.xml" value="0.22" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/bottomsheet_open_menu.xml" value="0.25" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/row_post.xml" value="0.25" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/bottomsheet_main_menu.xml" value="0.1" />
