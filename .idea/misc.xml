@@ -12,19 +12,32 @@
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_cobacoba.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_create_profile.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_messages.xml" value="0.35260416666666666" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_multipolar.xml" value="0.36666666666666664" />
-        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_profile.xml" value="0.11141304347826086" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_profile.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_search.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_sign_in.xml" value="0.15" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_sign_up.xml" value="0.11141304347826086" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/bottomsheet_activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/bottomsheet_add_post.xml" value="0.22" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/bottomsheet_open_menu.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/fragment_main_messages.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/fragment_main_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/fragment_main_timeline.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/row_chat_message.xml" value="0.17831813576494426" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/row_post.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/layout/row_post_message.xml" value="0.17831813576494426" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/bottomsheet_main_menu.xml" value="0.1" />
-        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_main.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_main.xml" value="0.22" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_main_bottom_navigation.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_main_messages.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_main_profile.xml" value="0.23148148148148148" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_main_timeline.xml" value="0.21354166666666666" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_post.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_profile.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/menu/menu_search.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudio/PostItFirebase/app/src/main/res/xml/searchable.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

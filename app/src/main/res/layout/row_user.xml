@@ -4,12 +4,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingVertical="12dp"
-    android:paddingHorizontal="@dimen/layout_padding">
-
+    android:paddingHorizontal="@dimen/layout_padding"
+    android:background="?attr/selectableItemBackground"
+    android:id="@+id/row_layout">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginBottom="12dp">
 
         <ImageView
@@ -23,10 +24,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_toStartOf="@id/row_options"
-            android:layout_toEndOf="@id/row_imageUser">
+            android:layout_toEndOf="@id/row_imageUser"
+            android:gravity="center">
 
         <TextView
             android:id="@+id/row_username"
@@ -38,7 +40,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginBottom="6dp"/>
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/row_userEmail"

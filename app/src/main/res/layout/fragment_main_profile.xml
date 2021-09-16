@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ProfileActivity"
+    tools:context=".fragment.MainProfileFragment"
     android:orientation="vertical"
     android:padding="@dimen/layout_padding">
 
@@ -18,8 +18,7 @@
         android:src="@drawable/profile_pict"
         android:contentDescription="@string/photo_profile"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:onClick="getImage"/>
+        android:layout_marginBottom="20dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/profileNameLayout"
@@ -80,16 +79,26 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-        android:id="@+id/editSubmit"
+        android:id="@+id/profileSignout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/submit"
+        android:text="@string/signout"
         android:layout_gravity="center"
-        android:onClick="submitEdit"
         android:layout_marginVertical="4dp"
         android:theme="@style/Widget.MaterialComponents.Button"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         app:spinning_bar_color="@color/white"
         app:spinning_bar_padding="12dp"/>
 
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+        android:id="@+id/profileEditSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:layout_gravity="center"
+        android:layout_marginVertical="4dp"
+        android:theme="@style/Widget.MaterialComponents.Button"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+        app:spinning_bar_color="@color/white"
+        app:spinning_bar_padding="12dp"/>
 </LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main_activity"
+    app:startDestination="@id/mainTimelineFragment">
+
+    <fragment
+        android:id="@+id/mainTimelineFragment"
+        android:name="com.fdhasna21.postitfirebase.fragment.MainTimelineFragment"
+        android:label="fragment_main_timeline"
+        tools:layout="@layout/fragment_main_timeline" >
+        <action
+            android:id="@+id/action_mainTimelineFragment2_to_mainMessagesFragment2"
+            app:destination="@id/mainMessagesFragment" />
+        <action
+            android:id="@+id/action_mainTimelineFragment2_to_mainProfileFragment2"
+            app:destination="@id/mainProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMessagesFragment"
+        android:name="com.fdhasna21.postitfirebase.fragment.MainMessagesFragment"
+        android:label="fragment_main_messages"
+        tools:layout="@layout/fragment_main_messages" >
+        <action
+            android:id="@+id/action_mainMessagesFragment2_to_mainProfileFragment2"
+            app:destination="@id/mainProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainProfileFragment"
+        android:name="com.fdhasna21.postitfirebase.fragment.MainProfileFragment"
+        android:label="fragment_main_profile"
+        tools:layout="@layout/fragment_main_profile" >
+        <action
+            android:id="@+id/action_mainProfileFragment_self"
+            app:destination="@id/mainProfileFragment" />
+    </fragment>
+</navigation>

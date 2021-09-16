@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fdhasna21.postitfirebase" >
+    package="com.fdhasna21.postitfirebase">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,12 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PostItFirebase"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.CreateProfileActivity"
+            android:name=".activity.SearchActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+        <activity
+            android:name=".activity.MessagesActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ProfileActivity"
+            android:name=".activity.CreateProfileActivity"
             android:exported="true" />
         <activity
             android:name=".activity.SignUpActivity"
@@ -31,7 +41,7 @@
             android:name=".activity.SplashScreenActivity"
             android:exported="true"
             android:noHistory="true"
-            android:theme="@style/Theme.PostItFirebase.NoActionBar" >
+            android:theme="@style/Theme.PostItFirebase.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
