@@ -10,17 +10,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="12dp">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/row_imageUser"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/profile_pict"
+            android:layout_alignParentStart="true"
             android:contentDescription="@string/account_profile_picture"
-            android:layout_alignParentStart="true"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/profile_pict" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,6 +77,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="@string/post_content"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="4dp"
         android:lineSpacingExtra="4dp"/>
 

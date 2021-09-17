@@ -14,10 +14,25 @@ import com.fdhasna21.postitfirebase.databinding.RowUserBinding
 import com.fdhasna21.postitfirebase.dataclass.Post
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 
 class MainTimelineFragment : Fragment() {
     private var _binding : FragmentMainTimelineBinding? = null
     private val binding get() = _binding!!
+    private var auth : FirebaseAuth = Firebase.auth
+    private var database : FirebaseDatabase = Firebase.database
+    private var firestore : FirebaseFirestore = Firebase.firestore
+    private var storage : FirebaseStorage = Firebase.storage
+    private var currentUser : FirebaseUser? = auth.currentUser
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +51,7 @@ class MainTimelineFragment : Fragment() {
     }
 
     private fun setupFirebaseRecycler() {
-        val reference = (requireActivity() as MainActivity).database.getReference("posts")
+        val reference = database.getReference("posts")
         //.orderByChild("time") tapi di convert ke long dulu
         // https://stackoverflow.com/questions/43584244/how-to-save-the-current-date-time-when-i-add-new-value-to-firebase-realtime-data
         val options = FirebaseRecyclerOptions.Builder<Post>()
@@ -49,9 +64,9 @@ class MainTimelineFragment : Fragment() {
 
             override fun onBindViewHolder(holder: PostViewHolder, position: Int, model: Post) {
                 val postKey = getRef(position).key!!
-                val postReference = (requireActivity() as MainActivity).database.getReference("posts").child(postKey)
+                val postReference = database.getReference("posts").child(postKey)
 
-                holder.setPost(requireContext(), model, (requireActivity() as MainActivity).currentUser?.uid, postReference)
+                holder.setPost(requireContext(), model, currentUser?.uid, postReference)
             }
         }
 

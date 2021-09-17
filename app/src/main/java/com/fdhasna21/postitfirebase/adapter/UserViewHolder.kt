@@ -26,7 +26,7 @@ class UserViewHolder(val binding : RowUserBinding) : RecyclerView.ViewHolder(bin
 
                 rowLayout.setOnClickListener {
                     val intent = Intent(context, MessagesActivity::class.java)
-                    intent.putExtra("other_user", user)
+                    intent.putExtra("target", user)
                     context.startActivity(intent)
                 }
             } else {

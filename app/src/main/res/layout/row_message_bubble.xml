@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/dateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="1dp"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/dateContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/date"
+                android:textSize="12sp" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/senderLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateLayout"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingVertical="12dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="@dimen/layout_padding">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/senderBubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@android:color/darker_gray"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <com.google.android.exoplayer2.ui.PlayerView
+                    android:id="@+id/senderPlayerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:maxWidth="200dp"
+                    android:maxHeight="200dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/senderMessage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:resize_mode="fixed_height"
+                    app:show_timeout="0"
+                    app:use_controller="true" />
+
+                <ImageView
+                    android:id="@+id/senderImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/attach_file"
+                    android:scaleType="centerInside"
+                    android:visibility="gone"
+                    app:flow_verticalBias="1.0"
+                    app:layout_constraintBottom_toTopOf="@id/senderMessage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/senderMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    app:flow_horizontalBias="0.0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/senderTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|right"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp"
+            android:text="@string/timestamp"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/senderBubble"
+            tools:ignore="RtlHardcoded" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/receiverLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateLayout"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingVertical="12dp"
+        android:paddingStart="@dimen/layout_padding"
+        android:paddingEnd="30dp">
+
+        <ImageView
+            android:id="@+id/receiverImage"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="4dp"
+            android:contentDescription="@string/account_profile_picture"
+            android:scaleType="fitCenter"
+            android:src="@drawable/profile_pict"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/receiverBubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@id/receiverImage"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/receiverImage"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <com.google.android.exoplayer2.ui.PlayerView
+                    android:id="@+id/receiverPlayerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:maxWidth="200dp"
+                    android:maxHeight="200dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/receiverMessage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:resize_mode="fixed_height"
+                    app:show_timeout="0"
+                    app:use_controller="true" />
+
+                <ImageView
+                    android:id="@+id/receiverImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/attach_file"
+                    android:scaleType="centerInside"
+                    android:visibility="gone"
+                    app:flow_verticalBias="1.0"
+                    app:layout_constraintBottom_toTopOf="@id/receiverMessage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/receiverMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    app:flow_horizontalBias="1.0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/receiverTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@id/receiverBubble"
+            android:gravity="left|center_vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp"
+            android:text="@string/timestamp"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@id/receiverBubble"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="RtlHardcoded" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

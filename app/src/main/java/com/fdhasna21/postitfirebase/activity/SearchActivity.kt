@@ -53,24 +53,6 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private fun setupFirebaseRecycler() {
         val reference = database.getReference("users")
 
-        //.orderByChild("time") tapi di convert ke long dulu
-        // https://stackoverflow.com/questions/43584244/how-to-save-the-current-date-time-when-i-add-new-value-to-firebase-realtime-data
-
-//        val options = FirebaseRecyclerOptions.Builder<Profile>()
-//            .setQuery(reference, Profile::class.java)
-//            .build()
-//        val firebaseAdapter = object : FirebaseRecyclerAdapter<Profile, UserViewHolder>(options){
-//            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-//                return UserViewHolder(RowPostMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-//            }
-//
-//            override fun onBindViewHolder(holder: UserViewHolder, position: Int, model: Profile) {
-//                val messageKey = getRef(position).key!!
-//                val messageReference = database.getReference("users").child(messageKey)
-//                holder.setUser(this@SearchActivity, model, currentUser?.uid, messageReference)
-//            }
-//        }
-
         reference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 exceptCurrent.clear()
@@ -87,7 +69,6 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
                     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
                         val item = exceptCurrent[position]
-                        Log.i("searchActivity", "$position->$item")
 //                val messageKey = getRef(position).key!!
 //                val messageReference = database.getReference("users").child(messageKey)
                         holder.setUser(this@SearchActivity, item, currentUser?.uid)

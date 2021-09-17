@@ -1,9 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MessagesActivity">
+    tools:context=".activity.MessagesActivity"
+    android:background="@color/purple_200">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/messageTyping" />
+
+    <FrameLayout
+        android:id="@+id/messageMedia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@android:color/darker_gray">
+
+        <ImageButton
+            android:id="@+id/messageAttachCancel"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="top|end"
+            android:src="@drawable/ic_close"
+            android:background="@drawable/ic_circle"
+            android:visibility="gone"
+            android:contentDescription="@string/attach_file"/>
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/messagePlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:resize_mode="fixed_height"
+            app:show_timeout="0"
+            app:use_controller="true"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/messageImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/attach_file" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/messageTyping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.95"
+            app:cardCornerRadius="20dp"
+            app:cardUseCompatPadding="true"
+            android:elevation="2dp">
+
+            <EditText
+                android:id="@+id/messagesEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.75"
+                android:background="@null"
+                android:drawableEnd="@drawable/ic_attach"
+                android:drawablePadding="12dp"
+                android:iconifiedByDefault="false"
+                android:imeOptions="actionSend"
+                android:maxHeight="100dp"
+                android:maxLines="5"
+                android:padding="12dp"
+                android:importantForAutofill="no" />
+        </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/messagesSend"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginVertical="8.8dp"
+            android:background="@drawable/ic_circle"
+            android:backgroundTint="?attr/colorPrimary"
+            android:paddingStart="4dp"
+            android:src="@drawable/ic_send"
+            android:contentDescription="@string/send"
+            tools:ignore="RtlSymmetry"
+            android:elevation="2dp"/>
+    </LinearLayout>
+</RelativeLayout>
