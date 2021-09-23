@@ -1,6 +1,7 @@
 package com.fdhasna21.postitfirebase.activity
 
 import android.app.Activity
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -18,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.fdhasna21.postitfirebase.NotificationUtils
 import com.fdhasna21.postitfirebase.adapter.RoomChatViewHolder
 import com.fdhasna21.postitfirebase.databinding.ActivityMessagesBinding
 import com.fdhasna21.postitfirebase.databinding.RowMessageBubbleBinding
@@ -57,6 +59,8 @@ class MessagesActivity : AppCompatActivity(), View.OnClickListener, View.OnTouch
     private var messages : ArrayList<ChatMessage> = arrayListOf()
     private var selectedUri : Uri? = null
 
+    private lateinit var notif : NotificationUtils
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMessagesBinding.inflate(layoutInflater)
@@ -73,6 +77,7 @@ class MessagesActivity : AppCompatActivity(), View.OnClickListener, View.OnTouch
         }
 
         setupFirebaseRecycler()
+        notif = NotificationUtils(this, "messageActivity", NotificationManager.IMPORTANCE_HIGH, "judul", "deskripsi")
     }
 
     private fun setupFirebaseRecycler() {
@@ -114,6 +119,12 @@ class MessagesActivity : AppCompatActivity(), View.OnClickListener, View.OnTouch
                 firebaseAdapter.notifyDataSetChanged()
                 binding.messagesHistory.adapter = firebaseAdapter
                 binding.messagesHistory.layoutManager = LinearLayoutManager(this@MessagesActivity)
+                binding.messagesHistory.smoothScrollToPosition(firebaseAdapter.itemCount)
+
+                val lastItem : ChatMessage = messages[firebaseAdapter.itemCount-1]
+                if(lastItem.senderUID != currentUser?.uid){
+                    notif.sendNotification(receiver?.name!!, lastItem.content!!, receiver!!)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -123,7 +134,12 @@ class MessagesActivity : AppCompatActivity(), View.OnClickListener, View.OnTouch
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        if(isTaskRoot){
+            startActivity(Intent(this, MainActivity::class.java))
+        } else {
+            onBackPressed()
+        }
+
         return true
     }
 
@@ -149,6 +165,7 @@ class MessagesActivity : AppCompatActivity(), View.OnClickListener, View.OnTouch
                 message.receiverUID = receiver?.uid
                 message.senderUID = currentUser?.uid
                 message.content = binding.messagesEditText.text.toString()
+//                notif.sendNotification(receiver?.name!!, message.content!!, receiver!!)
 
                 if(selectedUri == null){
                     message.messageUrl = ""
@@ -210,7 +227,6 @@ class MessagesActivity : AppCompatActivity(), View.OnClickListener, View.OnTouch
         val messageID = reference.push().key!!
         reference.child(messageID).setValue(message).addOnCompleteListener {
             if(it.isSuccessful){
-                Log.i("messageActivity", "sendDataMessage: success")
                 binding.messagesEditText.text = null
                 message = ChatMessage()
                 binding.messageAttachCancel.performClick()
